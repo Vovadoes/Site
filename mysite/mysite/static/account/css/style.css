@@ -1,15 +1,9 @@
 @charset "utf-8";
-@import url(http://weloveiconfonts.com/api/?family=fontawesome);
-@import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
-
 /* ---------- FONTAWESOME ---------- */
-
 [class*="fontawesome-"]:before {
   font-family: 'FontAwesome', sans-serif;
 }
-
 /* ---------- GENERAL ---------- */
-
 body {
 	color: #000;
 	font-family: "Varela Round", Arial, Helvetica, sans-serif;
@@ -77,19 +71,43 @@ input {
 	width: 328px;
 }
 
-#login fieldset input[type="submit"] {
-	background-color: #33cc77;
+#login fieldset input[type="submit"], a[class="previous"]{
 	color: #fff;
 	display: block;
 	margin: 0 auto;
 	padding: 4px 0;
-	width: 50%;
+	width: 90%;
 	cursor:pointer;
 }
 
-#login fieldset input[type="submit"]:hover {
+#login fieldset [color='green'] {
+	background-color: #33cc77;
+}
+
+#login fieldset [color='gray'] {
+	background-color: #777777;
+}
+
+#login fieldset [type="submit"]:hover {
 	background-color: #28ad63;
 }
+
+#login fieldset [color='gray']:hover {
+	background-color: #000000;
+}
+
+.previous{
+	font-size: inherit;
+	text-align: center;
+	user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+	text-decoration: none;
+	font-weight: inherit;
+    line-height: inherit;
+	border-radius: 3px;
+}
+
 
 .vladmaxi-top{
 	line-height: 24px;
@@ -141,7 +159,7 @@ input {
     left: 0;
     right: 0;
     background-repeat: no-repeat;
-    background-position: 50%;
+    background-position: 90%;
     background-size: cover;
 }
 .passp-bg::before {

@@ -4,6 +4,7 @@
 
 {% block settings %}
 {% load static %}
+<link rel="stylesheet" href="{% static 'account/css/founts.css' %}" media="screen" type="text/css" />
 <link rel="stylesheet" href="{% static 'account/css/style.css' %}" media="screen" type="text/css" />
 {% endblock %}
 
@@ -15,12 +16,15 @@
         {% csrf_token %}
         <fieldset>
             {% for form in user_form %}
-
                 <p><label class="field">{{form.label}}:</label></p>
 				<p>{{form}}</p>
-
             {% endfor %}
-				<p><input type="submit" value="Create my account"></p>
+            {% for form in profile_form %}
+                <p><label class="field">{{form.label}}:</label></p>
+				<p>{{form}}</p>
+            {% endfor %}
+				<p><input color='green' type="submit" value="Create my account"></p>
+                <p><a href="{% url 'start:start' %}" color="gray" type="submit" class="previous">Назад</a></p>
         </fieldset>
     </form>
 </div>

@@ -4,6 +4,7 @@
 
 {% block settings %}
 {% load static %}
+<link rel="stylesheet" href="{% static 'account/css/founts.css' %}" media="screen" type="text/css" />
 <link rel="stylesheet" href="{% static 'account/css/style.css' %}" media="screen" type="text/css" />
 {% endblock %}
 
@@ -20,7 +21,8 @@
 				<p><label for="password">Пароль:</label></p>
 				<p>{{form.password}}</p> 
 
-				<p><input type="submit" value="ВОЙТИ"></p>
+				<p><input color='green' type="submit" value="ВОЙТИ"></p>
+        <p><a href="{% url 'start:start' %}" color="gray" type="submit" class="previous">Назад</a></p>
         </fieldset>
     </form>
 </div>
