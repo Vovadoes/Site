@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Создать учетную запись{% endblock %}
+
+{% block settings %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'account/css/style.css' %}" media="screen" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div class="passp-bg passp-bg_10"></div>
+<div id="login">
+    <h2><span class="fontawesome-lock"></span>Регестрация:</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            {% for form in user_form %}
+
+                <p><label for={{form.name}} class="field">{{form.name}}:</label></p>
+				<p>{{form}}</p>
+
+            {% endfor %}
+				<p><input type="submit" value="Create my account"></p>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block titel %}{{article.article_titel}}{% endblock %}
+
+{% block settings %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'articles/button.css' %}" />
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'articles:index' %}" class="previous">Назад</a>
+    <h2>{{article.article_titel}}</h2>
+    <p>{{article.article_text}}</p>
+    <em>{{article.pub_date}}</em>
+
+    <hr>
+    {% if latest_comments_list %}
+        {% for i in latest_comments_list%}
+            <p>
+                <strong>{{i.author_name}}</strong>
+                <p>{{i.comment_text}}</p>
+            </p>
+        {%endfor%}
+    {%else%}
+        Комментариев нет
+    {%endif%}
+    <hr>
+
+    <form action="{% url 'articles:detail' article.id %}" method="POST">
+
+        {% csrf_token %}
+        <table>
+            {{form.author_name}}<br>
+            {{form.comment_text}}<br>
+        </table>
+        
+        
+    <button type="submit">Оставить комментарий</button>
+    </form>
+{% endblock %}

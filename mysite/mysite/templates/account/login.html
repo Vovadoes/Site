@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Регестрация{% endblock %}
+
+{% block settings %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'account/css/style.css' %}" media="screen" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div class="passp-bg passp-bg_10"></div>
+<div id="login">
+    <h2><span class="fontawesome-lock"></span>Авторизация</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+				<p><label for="login">Логин:</label></p>
+				<p>{{form.username}}</p>
+
+				<p><label for="password">Пароль:</label></p>
+				<p>{{form.password}}</p> 
+
+				<p><input type="submit" value="ВОЙТИ"></p>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

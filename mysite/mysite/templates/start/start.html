@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% block titel %}Старт{% endblock %}
+
+
+{% block settings %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'start/start.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'start/base.css' %}" />
+{% endblock %}
+
+
+
+{% block content %}
+      {% if user.is_authenticated %}
+        <h1>Привет {{ user.username }}!</h1>
+      {% else %}
+        <h1>Необходимо Войти!</h1>
+      {% endif %}
+<div class="widget">
+    <h3 class="widget-title">Категории</h3>
+    <ul class="widget-list">
+      <li><a href="{% url 'articles:index' %}">Статьи</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Выйти</a></li>
+      {% else %}
+        <li><a href="{% url 'account:user_login' %}">Войти</a></li>
+        <li><a href="{% url 'account:registration' %}">Зарегистрироваться</a></li>
+      {% endif %}
+    </ul>
+  </div>
+
+{% endblock %}

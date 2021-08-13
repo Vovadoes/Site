@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block settings %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'articles/button.css' %}" />
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'articles:index' %}" class="previous">Назад</a>
+
+    <form action="{% url 'articles:create_aticle'%}" method="POST">
+
+        {% csrf_token %}
+        <table>
+        {{form.article_titel}}
+        <br>
+        {{form.article_text}}  
+        </table>
+    <button type="submit">Опубликовать статью</button>
+    </form>
+{% endblock %}

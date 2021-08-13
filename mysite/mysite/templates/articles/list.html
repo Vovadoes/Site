@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block titel %}сайт{% endblock %}
+
+{% block settings %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'articles/button.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'articles/articles.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'articles/base.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'start:start' %}" class="previous">Назад</a><br>
+<div class="widget">
+    <h3 class="widget-title">Статьи</h3>
+    <a href="{% url 'articles:create_aticle' %}"><h1 class="widget-list">Добавить статью</h1></a><br>
+    {% if articles_list %}
+        <ul class="widget-list">
+            {% for i in articles_list %}
+                <li><a href="{% url 'articles:detail' i.id %}">{{i.article_titel}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <a>Статьи не найдены</a>
+    {% endif %}
+</div>
+{% endblock %}
