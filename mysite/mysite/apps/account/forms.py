@@ -10,16 +10,16 @@ class ProfileForm(forms.ModelForm):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={"type":"Password", "required placeholder":"Пароль", 'class': 'field'}))
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={"type":"Repeat_password", "required placeholder":"Повторите пароль", 'class': 'field'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={"required placeholder":"Пароль", 'class': 'field'}))
+    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput(attrs={"required placeholder":"Повторите пароль", 'class': 'field'}))
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email')
         widgets={
-            'username': forms.TextInput(attrs={"type":"username", "required placeholder":"Логин", 'class': 'field'}),
-            'first_name': forms.TextInput(attrs={"type":"first_name", "required placeholder":"Имя", 'class': 'field'}),
-            'email': forms.TextInput(attrs={"type":"email", "required placeholder":"Email", 'class': 'field'}),
+            'username': forms.TextInput(attrs={"required placeholder":"Логин", 'class': 'field'}),
+            'first_name': forms.TextInput(attrs={"required placeholder":"Имя", 'class': 'field'}),
+            'email': forms.TextInput(attrs={"required placeholder":"Email", 'class': 'field'}),
         }
 
     def clean_password2(self):
@@ -30,5 +30,5 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"type":"login", "required placeholder":"Логин"}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"type":"password", "required placeholder":"Пароль"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"type":"login", "required placeholder":"Логин", 'class': 'field'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"type":"password", "required placeholder":"Пароль", 'class': 'field'}))

@@ -16,7 +16,7 @@
         <fieldset>
             {% for form in user_form %}
 
-                <p><label for={{form.name}} class="field">{{form.name}}:</label></p>
+                <p><label class="field">{{form.label}}:</label></p>
 				<p>{{form}}</p>
 
             {% endfor %}
