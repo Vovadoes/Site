@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import Http404, HttpResponseRedirect, HttpResponse
-from .forms import UserRegistrationForm, ProfileForm
+from .forms import UserRegistrationForm, ProfileForm, LoginForm
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .models import Profile, User
 
 
 def user_login(request):
@@ -50,4 +50,10 @@ def registration(request):
                 {'user_form': user_form, 'profile_form': profile_form})
 
 def profile(request):
-    pass
+    if request.method == 'POST':
+        pass
+    else:
+        user_form = UserRegistrationForm(instance=User.objects.get(id = request.user.id))
+        profile_form = ProfileForm(instance=Profile.objects.get(id = request.user.profile.id))
+        return render(request, 'account/profile.html', {'profile_form': profile_form, 'user_form': user_form,
+                    'profile': Profile.objects.get(id = request.user.profile.id)})
