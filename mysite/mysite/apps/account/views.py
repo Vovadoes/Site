@@ -48,3 +48,6 @@ def registration(request):
         profile_form = ProfileForm()
     return render(request, 'account/register.html',
                 {'user_form': user_form, 'profile_form': profile_form})
+
+def profile(request):
+    pass
