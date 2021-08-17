@@ -19,6 +19,10 @@
                 <p><label class="field">{{form.label}}:</label></p>
 				<p>{{form}}</p>
             {% endfor %}
+            {% for form in password %}
+                <p><label class="field">{{form.label}}:</label></p>
+				<p>{{form}}</p>
+            {% endfor %}
             {% for form in profile_form %}
                 <p><label class="field">{{form.label}}:</label></p>
 				<p>{{form}}</p>
