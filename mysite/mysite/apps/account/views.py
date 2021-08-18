@@ -54,8 +54,14 @@ def registration(request):
                 {'user_form': user_form, 'profile_form': profile_form, 'password': password})
 
 def profile(request):
+    try:
+        profile = Profile.objects.get(id = request.user.profile.id)
+    except:
+        return HttpResponse('<h1>Войдите на сайт<h1>')
     if request.method == 'POST':
-        pass
+        user_form = UserRegistrationForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        return render(request, 'account/login.html')  
     else:
         profile = Profile.objects.get(id = request.user.profile.id)
         user_form = UserRegistrationForm(instance=User.objects.get(id = request.user.id))
@@ -64,5 +70,4 @@ def profile(request):
                     'profile_photo_url': profile.photo.url})
 
 def change_password(request):
-    return HttpResponse('!!!')
-    return render(request, 'account/profile.html')
+    return HttpResponseRedirect(reverse('start:error'))

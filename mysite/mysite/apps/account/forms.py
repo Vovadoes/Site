@@ -18,6 +18,14 @@ class UserRegistrationForm(forms.ModelForm):
             'email': forms.TextInput(attrs={"placeholder":"Email", 'class': 'field'}),
         }
 
+    def __iadd__(self, other):
+        if other.username != None:
+            self.username = other.username
+        if other.first_name != None:
+            self.first_name = other.first_name
+        if other.email != None:
+            self.email = other.email
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Логин", widget=forms.TextInput(attrs={"type":"login", "placeholder":"Логин", 'class': 'field'}))
