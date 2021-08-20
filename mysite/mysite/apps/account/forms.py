@@ -5,26 +5,23 @@ from .models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ()
+        fields = ('photo', )
 
 
 class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'email')
+        required = {
+            'username' : False,
+            'first_name': False,
+            'email' : False
+        }
         widgets={
             'username': forms.TextInput(attrs={"placeholder":"Логин", 'class': 'field'}),
             'first_name': forms.TextInput(attrs={"placeholder":"Имя", 'class': 'field'}),
             'email': forms.TextInput(attrs={"placeholder":"Email", 'class': 'field'}),
         }
-
-    def __iadd__(self, other):
-        if other.username != None:
-            self.username = other.username
-        if other.first_name != None:
-            self.first_name = other.first_name
-        if other.email != None:
-            self.email = other.email
 
 
 class LoginForm(forms.Form):

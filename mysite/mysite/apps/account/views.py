@@ -55,19 +55,35 @@ def registration(request):
 
 def profile(request):
     try:
+        user = User.objects.get(id = request.user.id)
         profile = Profile.objects.get(id = request.user.profile.id)
     except:
         return HttpResponse('<h1>Войдите на сайт<h1>')
+
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
-        profile_form = ProfileForm(request.POST)
-        return render(request, 'account/login.html')  
+        user_form = UserRegistrationForm(request.POST, instance=user)
+        profile_form = ProfileForm(instance=profile, data=request.POST, files=request.FILES)
+        if profile_form.is_valid() and user_form.is_valid():
+            user_form.save()
+            new_profile = profile_form.save(commit=False)
+            if new_profile.photo == '':
+                new_profile.photo = profile.photo
+            new_profile.save()
+            return render(request, 'account/login.html')
+        else:
+            return HttpResponseRedirect(reverse('start:error'))
     else:
         profile = Profile.objects.get(id = request.user.profile.id)
         user_form = UserRegistrationForm(instance=User.objects.get(id = request.user.id))
         profile_form = ProfileForm(instance=profile)
+        print('---', profile.photo)
+        try:
+            profile_photo_url = profile.photo.url
+        except:
+            
+            profile_photo_url = profile.default_photo()
         return render(request, 'account/profile.html', {'profile_form': profile_form, 'user_form': user_form,
-                    'profile_photo_url': profile.photo.url})
+                    'profile_photo_url': profile_photo_url})
 
 def change_password(request):
     return HttpResponseRedirect(reverse('start:error'))

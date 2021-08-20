@@ -24,10 +24,8 @@
         <p><label class="field">{{form.label}}:</label></p>
 		<p>{{form}}</p>
     {% endfor %}
-    <p><label class="field">Photo:</label></p>
-    <p><input type="file" name="photo" accept="image/*" id="id_photo" ></p>
-    <img src={{profile_photo_url}} height="338">
-    {% csrf_token %}
+    <p><img src={{profile_photo_url}}></p>
+    <p>{% csrf_token %}</p>
     <p><a href="{% url 'account:change_password' %}" color="gray" type="submit" class="previous">Изменить пароль</a></p>
     <p><input color='green' type="submit" value="Сохранить изменения"></p>
     <p><a href="{% url 'start:start' %}" color="gray" type="submit" class="previous">Назад</a></p>

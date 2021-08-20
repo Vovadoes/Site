@@ -21,6 +21,7 @@
     <ul class="widget-list">
       <li><a href="{% url 'articles:index' %}">Статьи</a></li>
       {% if user.is_authenticated %}
+      <li><a href="{% url 'account:profile' %}">Профиль</a></li>
         <li><a href="{% url 'logout' %}">Выйти</a></li>
       {% else %}
         <li><a href="{% url 'account:user_login' %}">Войти</a></li>

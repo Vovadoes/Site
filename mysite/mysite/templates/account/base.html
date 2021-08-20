@@ -12,7 +12,7 @@
         <div class="passp-bg passp-bg_10"></div>
         <div id="login">
         <h2><span class="fontawesome-lock">{% block name %}block name{% endblock %}</span></h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                <fieldset>
                    {% block content %}{% endblock %}
                </fieldset>
