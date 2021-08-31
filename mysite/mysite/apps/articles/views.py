@@ -25,10 +25,10 @@ def detail(request, article_id):
             return HttpResponse('<h1>Войдите на сайт<h1>')
         a.comment_set.create(author_name=profile.user.username,
                     comment_text=request.POST.get("comment_text"), profile_id=profile.id)
-        return HttpResponseRedirect(reverse('articles:index'))
+        return HttpResponseRedirect(reverse('articles:detail', args=[article_id]))
     else:
         form = CommentForm()
-        latest_comments_list = a.comment_set.order_by('-id')[:10]
+        latest_comments_list = a.comment_set.order_by('-id')[:10][::-1]
         return render(request, 'articles/detail.html', 
                     {'article': a, 'latest_comments_list': latest_comments_list, 'form': form})
 
